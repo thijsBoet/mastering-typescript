@@ -58,17 +58,22 @@ for (let movie of movies) {
 ```
 const square = (num: number):number => num * num
 const greet = (person: string = "stranger"):string => `Hi ${person}`
+
 // union types
 const random = (num:number): string|number => Math.random() < 0.5 ? num.toString() : num
+
 // multiple types in array
 const colors: [string, number, boolean] = ["red", 10, false];
+
 // void type (functions that doesn't return anything)
 const printTwice = (msg: string): void => console.log(msg, msg);
+
 // never type (the never type represents values the NEVER occur)
 // Don't confuse with void - void returns undefined or null.
 // With never, a function doesn't even finish executing
 // Function that throws an exception
 const makeError = (msg:string): never => throw new Error(msg)
+
 // Function that doesn't finish running
 const neverStop = (): never => {
 	while(true) {
