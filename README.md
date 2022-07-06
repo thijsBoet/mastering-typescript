@@ -25,9 +25,31 @@ tsc filename.ts
 
 ## Types
 
+### Type Inference
+The TS compiler can infer types from certain values in your code
+```
+let x = 27 					// 27 infers it is a number
+x = "Twenty-seven"	// Therefor it cannot be changed to a string
+```
+
 ### Primitives
 ```
 const actor: string = 'Al Pacino';
 const born: number = 1940;
 let isAlive: boolean = true;
+```
+
+### Any Type
+Allows you to use any type. By turning off type checking
+Sort of defeats the purpose of TS, so use sparingly!
+```
+const anyType: any = "I'm an any Type"
+const movies = ["Arrival", "The Thing", "Aliens", "Amadeus"]
+let foundMovie :any;
+
+for (let movie of movies) {
+	if(movie === "Amadeus") {
+		foundMovie === "Amadeus"
+	}
+}
 ```
