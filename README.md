@@ -32,7 +32,7 @@ let x = 27 // 27 infers it is a number
 x = "Twenty-seven" // Therefor it cannot be changed to a string
 ```
 
-### Primitives
+### Primitive Types
 ```
 const actor: string = 'Al Pacino';
 const born: number = 1940;
@@ -74,10 +74,106 @@ const printTwice = (msg: string): void => console.log(msg, msg);
 // Function that throws an exception
 const makeError = (msg:string): never => throw new Error(msg)
 
-// Function that doesn't finish running
+// Function that don't finish running
 const neverStop = (): never => {
 	while(true) {
 		console.log("Game Loop Running!!!")
 	}
 }
 ```
+
+### Object Types
+```
+const dog = {
+	name: "Eshley",
+	breed: "teckel",
+	age: 16.3,
+}
+
+const printName = (person: { first: string, last: string }): void => console.log(`${person.first} ${person.last}`);
+printName({ first: "Matthijs", last: "Boet" })
+
+let coordinate: {x: number, y: number} = {x: 1, y: 2};
+```
+
+#### Type Alias
+Instead of writing out object types in an annotation, we can declare them separately in a type alias, which is simply the desired shape of the object.
+
+This allows us to make our code more readable and even reuse the types elsewhere in our code.
+```
+let coordinate: { x: number, y: number } = { x: 1, y: 2 };
+
+type Point = {
+	x: number,
+	y: number
+	// ? means optional
+	z?: number,
+}
+
+let coordinate2: Point = { x: 1, y: 2 };
+
+const doublePoint = (point: Point): Point => {
+	return { x: point.x * 2, y: point.y * 2 };
+}
+
+type User = {
+	// readonly cannot be changed
+	readonly id: number;
+	username: string;
+}
+```
+
+#### Nested Objects
+```
+type Song = {
+	title: string;
+	artist: string;
+	numStreams: number;
+	credits: {
+		producer: string;
+		writer: string;
+	}
+}
+
+const calculatePayout = (song: Song): number => song.numStreams * 0.0033;
+
+const song: Song = {
+	title: "Unchained Melody",
+	artist: "Righteous Brothers",
+	numStreams: 12873321,
+	credits: {
+		producer: "Phil Spector",
+		writer: "Alex North",
+	}
+}
+
+const printSong = (song: Song): void => {
+	console.log(`${song.title} by ${song.artist}`);
+	console.log(`Produced by ${song.credits.producer}`);
+	console.log(`Written by ${song.credits.writer}`);
+}
+
+const earnings = calculatePayout(song);
+console.log(earnings);
+printSong(song);
+```
+
+#### Intersection Types
+type Circle = {
+	radius: number;
+}
+
+type Colorful = {
+	color: string;
+}
+
+type ColorfulCircle = Circle & Colorful;
+
+const happyFace: ColorfulCircle = {
+	radius: 100,
+	color: "yellow"
+}
+
+### Array Types
+Arrays can be typed using a type annotation followed by empty array brackets, like number[] for an array of numbers.
+Note: these arrays only allow data of that one type inside them. More on that later!
