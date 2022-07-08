@@ -82,3 +82,21 @@ const happyFace: ColorfulCircle = {
 	radius: 100,
 	color: "yellow"
 }
+
+type Cat = {
+	numLives: number;
+}
+
+type Dog = {
+	breed: string;
+}
+
+type CatDog = Cat & Dog & {
+	age: number;
+};
+
+const christy: CatDog = {
+	numLives: 7,
+	breed: "Husky",
+	age: 2
+}

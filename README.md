@@ -159,6 +159,7 @@ printSong(song);
 ```
 
 #### Intersection Types
+```
 type Circle = {
 	radius: number;
 }
@@ -173,7 +174,44 @@ const happyFace: ColorfulCircle = {
 	radius: 100,
 	color: "yellow"
 }
+```
 
 ### Array Types
 Arrays can be typed using a type annotation followed by empty array brackets, like number[] for an array of numbers.
 Note: these arrays only allow data of that one type inside them. More on that later!
+```
+const activeUsers: string[] = ["Max", "Anna"];
+activeUsers.push("Margot");
+
+const ageList: number[] = [32, 33, 34, 35];
+
+// Alternative clunky syntax
+const bool: Array<boolean> = [];
+
+// Custom Type Array
+type Point = {
+	x: number;
+	y: number;
+}
+
+const coords: Point[] = [];
+coords.push({ x: 23, y: 8 });
+
+// Multidimensional Arrays
+const board: string[][] = [
+	["X", "O", "X"],
+	["O", "X", "O"],
+	["X", "O", "X"]
+];
+
+const demo: number[][][] = [[[1]]];
+```
+
+### Union Types
+Union types allow us to give a value a few different possible types. If the eventual value's type is included, Typescript will be happy.
+
+We can create a union type by using the single | (pipe character) to separate the types we want to include. It's like saying, "This thing is allowed to be this, this, or this". Typescript will enforce it
+from there.
+```
+
+```

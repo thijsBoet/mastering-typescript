@@ -35,3 +35,8 @@ var happyFace = {
     radius: 100,
     color: "yellow"
 };
+var christy = {
+    numLives: 7,
+    breed: "Husky",
+    age: 2
+};
