@@ -213,5 +213,72 @@ Union types allow us to give a value a few different possible types. If the even
 We can create a union type by using the single | (pipe character) to separate the types we want to include. It's like saying, "This thing is allowed to be this, this, or this". Typescript will enforce it
 from there.
 ```
+let age: number | string = 22;
+age = "23";
 
+type Point = {
+	x: number;
+	y: number;
+}
+
+type Loc = {
+	lat: number;
+	long: number;
+}
+
+let coordinates: Point | Loc = { x: 1, y: 34 };
+coordinates = { lat: 321.213, long: 23.334 };
+
+const printAge = (age: number|string): void => console.log(`You are ${age} years old`);
+
+printAge(23);
+printAge("87");
+```
+
+### Unions - Narrowing the Type
+Narrowing the Type is simply doing a type check before working with a value. If your value is a string you may want to use it
+differently than if you got a number.
+
+Since unions allow multiple types for a value, it's good to check what came through before working with it.
+```
+const calculateTax = (price: number|string, tax: number) => {
+	if (typeof price === "string") {
+		return parseFloat(price.replace("$", "")) * tax;
+	} else {
+		return price * tax;
+	}
+}
+
+// Union types can be used to describe the types of multiple inputs
+// Array of numbers and strings
+const stuff: (number | string)[] = [1, "2", 3, "4"];
+// Array of numbers or strings
+const stuff2: number[] | string[] = ["2", "4"];
+// Array of strings or a number
+const stuff3: string[] | number = 15;
+// Custom types
+const coordinates2: (Point | Loc)[] = [{ x: 1, y: 34 }, { lat: 321.213, long: 23.334 }];
+```
+
+### Literal Types
+Literal types are not just types - but the values themselves too!
+
+On it's own, they may not seem useful, but combine them with unions and you can have very fine-tuned type options for Typescript to enforce.
+```
+let zero: 0 = 0;
+let hi: "hi" = "hi";
+
+let mood: "happy" | "sad" = "happy";
+mood = "sad";
+
+type DayOfWeek =
+	| "Monday"
+	| "Tuesday"
+	| "Wednesday"
+	| "Thursday"
+	| "Friday"
+	| "Saturday"
+	| "Sunday";
+
+let today: DayOfWeek = "Monday";
 ```
