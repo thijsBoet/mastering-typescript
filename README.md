@@ -96,7 +96,7 @@ printName({ first: "Matthijs", last: "Boet" })
 let coordinate: {x: number, y: number} = {x: 1, y: 2};
 ```
 
-#### Type Alias
+### Type Alias
 Instead of writing out object types in an annotation, we can declare them separately in a type alias, which is simply the desired shape of the object.
 
 This allows us to make our code more readable and even reuse the types elsewhere in our code.
@@ -123,7 +123,7 @@ type User = {
 }
 ```
 
-#### Nested Objects
+### Nested Objects
 ```
 type Song = {
 	title: string;
@@ -158,7 +158,7 @@ console.log(earnings);
 printSong(song);
 ```
 
-#### Intersection Types
+### Intersection Types
 ```
 type Circle = {
 	radius: number;
@@ -282,3 +282,48 @@ type DayOfWeek =
 
 let today: DayOfWeek = "Monday";
 ```
+
+### Tuples
+Tuples are a special type exclusive to TypeScript (they don't exist in JS)
+
+Tuples are arrays of fixed lengths and ordered with specific types - like super rigid arrays.
+```
+let myTuple: [string, number] = ['hello', 4];
+
+const color: [number, number, number] = [255, 255, 255];
+// Cannot change order of elements in tuple
+type HTTPResponse = [number, string];
+const OK: HTTPResponse = [200, 'OK'];
+// Does not complain after creation of Tuple
+OK.push('hello');
+OK.pop()
+OK.pop()
+const responses: HTTPResponse[] = [OK, [404, 'Not Found']];
+```
+
+### Enums
+Enums allow us to define a set of named constants. We can give these constants numeric or string values.
+
+There's quite a few options when it comes to enums!
+```
+enum Role {
+	admin = 'admin',
+	user = 'user',
+	guest = 'guest'
+}
+const user1234: Role = Role.admin;
+
+enum OrderStatus {
+	PENDING, 	// 0
+	SHIPPED, 	// 1
+	DELIVERED,// 2
+	RETURNED, // 3
+}
+const myStatus = OrderStatus.DELIVERED;
+
+const isDelivered = (status: OrderStatus): boolean => status === OrderStatus.DELIVERED;
+
+isDelivered(OrderStatus.RETURNED)
+```
+
+### Interfaces
