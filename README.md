@@ -261,3 +261,223 @@ const coordinates2: (Point | Loc)[] = [{ x: 1, y: 34 }, { lat: 321.213, long: 23
 ```
 
 ### Literal Types
+Literal types are not just types - but the values themselves too!
+
+On it's own, they may not seem useful, but combine them with unions and you can have very fine-tuned type options for Typescript to enforce.
+```
+let zero: 0 = 0;
+let hi: "hi" = "hi";
+
+let mood: "happy" | "sad" = "happy";
+mood = "sad";
+
+type DayOfWeek =
+	| "Monday"
+	| "Tuesday"
+	| "Wednesday"
+	| "Thursday"
+	| "Friday"
+	| "Saturday"
+	| "Sunday";
+
+let today: DayOfWeek = "Monday";
+```
+
+### Tuples
+Tuples are a special type exclusive to TypeScript (they don't exist in JS)
+
+Tuples are arrays of fixed lengths and ordered with specific types - like super rigid arrays.
+```
+let myTuple: [string, number] = ['hello', 4];
+
+const color: [number, number, number] = [255, 255, 255];
+// Cannot change order of elements in tuple
+type HTTPResponse = [number, string];
+const OK: HTTPResponse = [200, 'OK'];
+// Does not complain after creation of Tuple
+OK.push('hello');
+OK.pop()
+OK.pop()
+const responses: HTTPResponse[] = [OK, [404, 'Not Found']];
+```
+
+### Enums
+Enums allow us to define a set of named constants. We can give these constants numeric or string values.
+
+There's quite a few options when it comes to enums!
+```
+enum Role {
+	admin = 'admin',
+	user = 'user',
+	guest = 'guest'
+}
+const user1234: Role = Role.admin;
+
+enum OrderStatus {
+	PENDING, 	// 0
+	SHIPPED, 	// 1
+	DELIVERED,// 2
+	RETURNED, // 3
+}
+const myStatus = OrderStatus.DELIVERED;
+
+const isDelivered = (status: OrderStatus): boolean => status === OrderStatus.DELIVERED;
+
+isDelivered(OrderStatus.RETURNED)
+```
+
+### Interfaces
+Interfaces serve almost the exact same purpose as type aliases (with a slightly different syntax).
+
+We can use them to create reusable, modular types that describe the shapes of objects
+```
+// TYPES vs. INTERFACES
+// TYPE
+type Point = {
+	x: number;
+	y: number;
+};
+const pt: Point = { x: 10, y: 20 };
+// INTERFACE
+interface Point2 {
+	x: number;
+	y: number;
+}
+const pt2: Point2 = { x: 1, y: 2 };
+
+interface Person {
+	readonly id: number;
+	first: string;
+	last: string;
+	nickname?: string;
+	// Can add methods to Interfaces
+	sayHi?: (name: string) => string;
+}
+
+const thomas: Person = {
+	id: 124,
+	first: 'Thomas',
+	last: 'Huber',
+	nickname: 'HJ',
+	sayHi: () => `Hi there! I am ${this.first} ${this.last} aka ${this.nickname}`,
+};
+
+interface Product {
+	name: string;
+	price: number;
+	applyDiscount(discount: number): number;
+}
+
+const shoes: Product = {
+	name: 'Nike Air',
+	price: 100,
+	applyDiscount(amount: number): number {
+		return this.price * (1 - amount);
+	},
+};
+console.log(shoes.applyDiscount(0.1));
+
+interface Dog {
+	name: string;
+	age: number;
+}
+// Can add properties and methods to Interfaces
+interface Dog {
+	breed: string;
+	bark(): string;
+}
+const Elton: Dog = {
+	name: 'Elton',
+	age: 2,
+	breed: 'Poodle',
+	bark: () => 'Woof!',
+};
+
+// Can Inherit from multiple other interfaces
+interface ServiceDog extends Dog {
+	job: 'drug sniffer' | 'bomb detection' | 'guide dog' | 'other';
+}
+
+const Chewy: ServiceDog = {
+	name: 'Chewy',
+	age: 1,
+	breed: 'German Shepard',
+	bark: () => 'Bark!',
+	job: 'drug sniffer',
+};
+
+interface Employee {
+	readonly id: number;
+	email: string;
+}
+
+interface Developer extends Person, Employee {
+	level: 'junior' | 'mid' | 'senior';
+	languages: string[];
+}
+
+const Tony: Developer = {
+	first: 'Tony',
+	last: 'Stark',
+	id: 123,
+	email: 't.stark@ironman.com',
+	level: 'mid',
+	languages: ['JavaScript', 'TypeScript', 'C#'],
+};
+```
+
+### TYPES vs. INTERFACES
+- Interfaces can only describe the shape of an object. No Union types, literals, arrays etc
+- Type Aliases can use any kind of shape
+- Interfaces structure can be latter added on
+- Interfaces can be extended with multiple other interfaces
+
+### Configuring TypeScript
+```
+create tsconfig.json:
+tsc --init
+
+watch mode TS compiler:
+tsc -w file.ts
+
+compile and watch multiple files:
+tsc -w file1.ts file2.ts
+
+all options:
+https://www.typescriptlang.org/tsconfig
+
+// Configure what files to compile and what to ignore
+"files": [
+    "farmstand.ts",
+    "index.ts",
+
+  ],
+  "include" : ["src"],
+  "exclude" : ["dontTouch.ts", "node_modules"],
+
+// Specify the output file name and location
+"outDir": "./dist"
+
+// Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', etc.
+"target": "ES5"
+
+// Enable all strict type-checking options
+"strict": true,
+```
+
+### Working with DOM
+Can Change Library compiler options
+```
+"lib": [
+    "es2021",
+    "ESNext",
+    "DOM",
+]
+```
+The TypeScript Non-Null Assertion allows us to say that a variable is not null. "!"
+```
+const btn: HTMLElement = document.getElementById("btn")!
+```
+Type assertions are used to tell the compiler that we know what type we're dealing with.
+```
+const input = document.getElementById("todoinput")! as HTMLInputElement
