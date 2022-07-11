@@ -326,4 +326,53 @@ const isDelivered = (status: OrderStatus): boolean => status === OrderStatus.DEL
 isDelivered(OrderStatus.RETURNED)
 ```
 
-### Interfaces
+### Configuring TypeScript
+```
+create tsconfig.json:
+tsc --init
+
+watch mode TS compiler:
+tsc -w file.ts
+
+compile and watch multiple files:
+tsc -w file1.ts file2.ts
+
+all options:
+https://www.typescriptlang.org/tsconfig
+
+// Configure what files to compile and what to ignore
+"files": [
+    "farmstand.ts",
+    "index.ts",
+
+  ],
+  "include" : ["src"],
+  "exclude" : ["dontTouch.ts", "node_modules"],
+
+// Specify the output file name and location
+"outDir": "./dist"
+
+// Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', etc.
+"target": "ES5"
+
+// Enable all strict type-checking options
+"strict": true,
+```
+
+### Working with DOM
+Can Change Library compiler options
+```
+"lib": [
+    "es2021",
+    "ESNext",
+    "DOM",
+]
+```
+The TypeScript Non-Null Assertion allows us to say that a variable is not null. "!"
+```
+const btn: HTMLElement = document.getElementById("btn")!
+```
+Type assertions are used to tell the compiler that we know what type we're dealing with.
+```
+const input = document.getElementById("todoinput")! as HTMLInputElement
+```
