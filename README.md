@@ -481,3 +481,9 @@ const btn: HTMLElement = document.getElementById("btn")!
 Type assertions are used to tell the compiler that we know what type we're dealing with.
 ```
 const input = document.getElementById("todoinput")! as HTMLInputElement
+```
+
+### JS Classes
+```
+
+```
