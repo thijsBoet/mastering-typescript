@@ -1,6 +1,7 @@
-var actor = 'Al Pacino';
-var born = 1940;
-var isAlive = true;
+"use strict";
+const actor = 'Al Pacino';
+const born = 1940;
+let isAlive = true;
 actor.toUpperCase();
-var currentAge = new Date().getFullYear() - born;
+const currentAge = new Date().getFullYear() - born;
 isAlive = false;

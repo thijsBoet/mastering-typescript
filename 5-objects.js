@@ -1,41 +1,42 @@
-var pet = {
+"use strict";
+const pet = {
     name: "Muis",
     breed: "Cat",
-    age: 8
+    age: 8,
 };
-var printName = function (person) { return console.log("".concat(person.first, " ").concat(person.last)); };
+const printName = (person) => console.log(`${person.first} ${person.last}`);
 printName({ first: "Mick", last: "Jagger" });
-var randomCoordinate = function () {
+const randomCoordinate = () => {
     return { x: Math.random(), y: Math.random() };
 };
-var coordinate = { x: 1, y: 2 };
-var coordinate2 = { x: 1, y: 2 };
-var doublePoint = function (point) {
+let coordinate = { x: 1, y: 2 };
+let coordinate2 = { x: 1, y: 2 };
+const doublePoint = (point) => {
     return { x: point.x * 2, y: point.y * 2 };
 };
-var calculatePayout = function (song) { return song.numStreams * 0.0033; };
-var song = {
+const calculatePayout = (song) => song.numStreams * 0.0033;
+const song = {
     title: "Unchained Melody",
     artist: "Righteous Brothers",
     numStreams: 12873321,
     credits: {
         producer: "Phil Spector",
-        writer: "Alex North"
+        writer: "Alex North",
     }
 };
-var printSong = function (song) {
-    console.log("".concat(song.title, " by ").concat(song.artist));
-    console.log("Produced by ".concat(song.credits.producer));
-    console.log("Written by ".concat(song.credits.writer));
+const printSong = (song) => {
+    console.log(`${song.title} by ${song.artist}`);
+    console.log(`Produced by ${song.credits.producer}`);
+    console.log(`Written by ${song.credits.writer}`);
 };
-var earnings = calculatePayout(song);
+const earnings = calculatePayout(song);
 console.log(earnings);
 printSong(song);
-var happyFace = {
+const happyFace = {
     radius: 100,
     color: "yellow"
 };
-var christy = {
+const christy = {
     numLives: 7,
     breed: "Husky",
     age: 2

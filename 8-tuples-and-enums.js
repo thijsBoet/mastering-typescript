@@ -1,18 +1,19 @@
-var myTuple = ['hello', 4];
-var color = [255, 255, 255];
-var OK = [200, 'OK'];
+"use strict";
+let myTuple = ['hello', 4];
+const color = [255, 255, 255];
+const OK = [200, 'OK'];
 // Does not complain after creation of Tuple
 OK.push('hello');
 OK.pop();
 OK.pop();
-var responses = [OK, [404, 'Not Found']];
+const responses = [OK, [404, 'Not Found']];
 var Role;
 (function (Role) {
     Role["admin"] = "admin";
     Role["user"] = "user";
     Role["guest"] = "guest";
 })(Role || (Role = {}));
-var user1234 = Role.admin;
+const user1234 = Role.admin;
 var OrderStatus;
 (function (OrderStatus) {
     OrderStatus[OrderStatus["PENDING"] = 0] = "PENDING";
@@ -20,8 +21,8 @@ var OrderStatus;
     OrderStatus[OrderStatus["DELIVERED"] = 2] = "DELIVERED";
     OrderStatus[OrderStatus["RETURNED"] = 3] = "RETURNED";
 })(OrderStatus || (OrderStatus = {}));
-var myStatus = OrderStatus.DELIVERED;
-var isDelivered = function (status) { return status === OrderStatus.DELIVERED; };
+const myStatus = OrderStatus.DELIVERED;
+const isDelivered = (status) => status === OrderStatus.DELIVERED;
 isDelivered(OrderStatus.RETURNED);
 var ArrowKeys;
 (function (ArrowKeys) {

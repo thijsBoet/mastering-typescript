@@ -1,39 +1,39 @@
-var _this = this;
-var pt = { x: 10, y: 20 };
-var pt2 = { x: 1, y: 2 };
-var thomas = {
+"use strict";
+const pt = { x: 10, y: 20 };
+const pt2 = { x: 1, y: 2 };
+const thomas = {
     id: 124,
     first: 'Thomas',
     last: 'Huber',
     nickname: 'HJ',
-    sayHi: function () { return "Hi there! I am ".concat(_this.first, " ").concat(_this.last, " aka ").concat(_this.nickname); }
+    sayHi: () => `Hi there! I am ${this.first} ${this.last} aka ${this.nickname}`,
 };
-var shoes = {
+const shoes = {
     name: 'Nike Air',
     price: 100,
-    applyDiscount: function (amount) {
+    applyDiscount(amount) {
         return this.price * (1 - amount);
-    }
+    },
 };
 console.log(shoes.applyDiscount(0.1));
-var Elton = {
+const Elton = {
     name: 'Elton',
     age: 2,
     breed: 'Poodle',
-    bark: function () { return 'Woof!'; }
+    bark: () => 'Woof!',
 };
-var Chewy = {
+const Chewy = {
     name: 'Chewy',
     age: 1,
     breed: 'German Shepard',
-    bark: function () { return 'Bark!'; },
-    job: 'drug sniffer'
+    bark: () => 'Bark!',
+    job: 'drug sniffer',
 };
-var Tony = {
+const Tony = {
     first: 'Tony',
     last: 'Stark',
     id: 123,
     email: 't.stark@ironman.com',
     level: 'mid',
-    languages: ['JavaScript', 'TypeScript', 'C#']
+    languages: ['JavaScript', 'TypeScript', 'C#'],
 };
