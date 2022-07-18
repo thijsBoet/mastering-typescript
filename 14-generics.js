@@ -40,9 +40,34 @@ getRandomElement([5, 4, 8]);
 getRandomElement(['red', 'green', 'blue']);
 // In TSX Arrow functions you must add a trailing comma to the first occurance of Type
 var fetchList = function (list) { return list; };
-// Generics can have multiple parameters
+// Generics can have multiple parameters and have type constraints with extends ...type
 function merge(obj1, obj2) {
     return __assign(__assign({}, obj1), obj2);
 }
 ;
 var comboObj = merge({ name: "Max" }, { age: 30 });
+function printDoubleLength(item) {
+    return item.length * 2;
+}
+// Can also have a default type when none is given
+function makeEmptyArray() {
+    return [];
+}
+var numbers = makeEmptyArray();
+var VideoPlayList = /** @class */ (function () {
+    function VideoPlayList() {
+        this.videos = [];
+    }
+    return VideoPlayList;
+}());
+var Playlist = /** @class */ (function () {
+    function Playlist() {
+        this.queue = [];
+    }
+    Playlist.prototype.add = function (el) {
+        this.queue.push(el);
+    };
+    return Playlist;
+}());
+var songs = new Playlist();
+var videos = new Playlist();
