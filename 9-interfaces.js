@@ -1,35 +1,36 @@
 "use strict";
-const pt = { x: 10, y: 20 };
-const pt2 = { x: 1, y: 2 };
-const thomas = {
+var _this = this;
+var pt = { x: 10, y: 20 };
+var pt2 = { x: 1, y: 2 };
+var thomas = {
     id: 124,
     first: 'Thomas',
     last: 'Huber',
     nickname: 'HJ',
-    sayHi: () => `Hi there! I am ${this.first} ${this.last} aka ${this.nickname}`,
+    sayHi: function () { return "Hi there! I am ".concat(_this.first, " ").concat(_this.last, " aka ").concat(_this.nickname); },
 };
-const shoes = {
+var shoes = {
     name: 'Nike Air',
     price: 100,
-    applyDiscount(amount) {
+    applyDiscount: function (amount) {
         return this.price * (1 - amount);
     },
 };
 console.log(shoes.applyDiscount(0.1));
-const Elton = {
+var Elton = {
     name: 'Elton',
     age: 2,
     breed: 'Poodle',
-    bark: () => 'Woof!',
+    bark: function () { return 'Woof!'; },
 };
-const Chewy = {
+var Chewy = {
     name: 'Chewy',
     age: 1,
     breed: 'German Shepard',
-    bark: () => 'Bark!',
+    bark: function () { return 'Bark!'; },
     job: 'drug sniffer',
 };
-const Tony = {
+var Tony = {
     first: 'Tony',
     last: 'Stark',
     id: 123,

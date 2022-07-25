@@ -1,12 +1,12 @@
 "use strict";
-const btn = document.getElementById("btn");
-const input = document.getElementById("todoinput");
-const form = document.getElementById("todoform");
-const list = document.getElementById("todolist");
-const todos = readTodos();
+var btn = document.getElementById("btn");
+var input = document.getElementById("todoinput");
+var form = document.getElementById("todoform");
+var list = document.getElementById("todolist");
+var todos = readTodos();
 todos.forEach(createTodo);
 function readTodos() {
-    const todosJson = localStorage.getItem('todos');
+    var todosJson = localStorage.getItem('todos');
     if (todosJson === null)
         return [];
     return JSON.parse(todosJson);
@@ -16,7 +16,7 @@ function saveTodos() {
 }
 function handleSubmit(e) {
     e.preventDefault();
-    const newTodo = {
+    var newTodo = {
         text: input.value,
         completed: false
     };
@@ -29,11 +29,11 @@ function handleSubmit(e) {
 function createTodo(todo) {
     if (todo.text === '')
         return;
-    const newLI = document.createElement('li');
-    const checkbox = document.createElement('input');
+    var newLI = document.createElement('li');
+    var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = todo.completed;
-    checkbox.addEventListener('change', () => {
+    checkbox.addEventListener('change', function () {
         todo.completed = checkbox.checked;
     });
     saveTodos();

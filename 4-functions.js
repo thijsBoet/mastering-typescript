@@ -1,20 +1,23 @@
 "use strict";
-const square = (num) => num * num;
+var square = function (num) { return num * num; };
 console.log(square(2));
-const greet = (person = "stranger") => `Hi ${person}`;
+var greet = function (person) {
+    if (person === void 0) { person = "stranger"; }
+    return "Hi ".concat(person);
+};
 console.log(greet());
-const doSomething = (person, age, isFunny) => `${person} is a ${age} year old ${isFunny ? 'funny' : 'not funny'} mofo`;
+var doSomething = function (person, age, isFunny) { return "".concat(person, " is a ").concat(age, " year old ").concat(isFunny ? 'funny' : 'not funny', " mofo"); };
 console.log(doSomething("Matthew", 40, true));
-const random = (num) => Math.random() < 0.5 ? num.toString() : num;
+var random = function (num) { return Math.random() < 0.5 ? num.toString() : num; };
 console.log(random(5));
-const add = (a, b) => a + b;
+var add = function (a, b) { return a + b; };
 console.log(add(5, 10));
-const colors = ["red", "blue", "green"];
-colors.map(color => color.toUpperCase());
+var colors = ["red", "blue", "green"];
+colors.map(function (color) { return color.toUpperCase(); });
 console.log(colors);
-const printTwice = (msg) => console.log(msg, msg);
-const makeError = (msg) => { throw new Error(msg); };
-const neverStop = () => {
+var printTwice = function (msg) { return console.log(msg, msg); };
+var makeError = function (msg) { throw new Error(msg); };
+var neverStop = function () {
     while (true) {
         console.log("Game Loop Running!!!");
     }

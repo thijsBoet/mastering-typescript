@@ -1,15 +1,15 @@
 "use strict";
-const activeUsers = ["Max", "Anna"];
+var activeUsers = ["Max", "Anna"];
 activeUsers.push("Margot");
-const ageList = [32, 33, 34, 35];
+var ageList = [32, 33, 34, 35];
 // Alternative clunky syntax
-const bool = [];
-const coords = [];
+var bool = [];
+var coords = [];
 coords.push({ x: 23, y: 8 });
 // Multidimensional Arrays
-const board = [
+var board = [
     ["X", "O", "X"],
     ["O", "X", "O"],
     ["X", "O", "X"]
 ];
-const demo = [[[1]]];
+var demo = [[[1]]];
